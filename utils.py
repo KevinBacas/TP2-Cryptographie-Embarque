@@ -1,3 +1,5 @@
+from math import ceil
+
 def pgcd(a, b):
 	while b != 0:
 		r = a % b
@@ -60,7 +62,15 @@ def rabin_miller(p, t):
 					res = True
 				k = k-1
 	return res
-	
+
+def generer_nombre_premier(n):
+	with open('/dev/urandom', 'r') as f:
+		a = long((f.read(int(ceil(n/8)))).encode('hex'), 16) | (1 << n-1)
+		if (a & 1) == 0:
+			a = a + 1
+		while not rabin_miller(a, 10):
+			a = a + 2
+		return a
+
 if __name__ == "__main__":
-	print rabin_miller(13, 10)
-	print rabin_miller(60, 10)
+	print generer_nombre_premier(1024)
