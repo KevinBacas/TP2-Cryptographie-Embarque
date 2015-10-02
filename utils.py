@@ -24,3 +24,16 @@ def inverse(a, n):
 	# TODO: Afficher un message d'erreur si res == 0	 
 	return res
  
+def theoreme_chinois(xis, pis):
+	N = 1
+	total = 0
+	for pi in pis:
+		N = N * pi
+	for (xi, pi) in zip(xis, pis):
+		Ni = N / pi
+		(_, ui, _) = bezout(Ni, pi)
+		total = total + ui*Ni*xi
+	return total % N
+
+if __name__ == '__main__':
+	print theoreme_chinois([3, 4, 5], [17, 11, 6])

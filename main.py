@@ -1,4 +1,4 @@
-from utils import pgcd, bezout, inverse
+from utils import pgcd, bezout, inverse, theoreme_chinois
 
 if __name__ == '__main__':
 	print "Hello world!"
@@ -12,3 +12,5 @@ if __name__ == '__main__':
 	print "inverse(2,7) should be equal 4 :", inverse(2, 7)
 	print "inverse(-2,7) should be equal 3 :", inverse(-2, 7)
 	print "inverse(-9,7) should be equal 3 :", inverse(-9, 7)
+	
+	print "theoreme_chinois([3, 4, 5], [17, 11, 6]) should return 785 :", theoreme_chinois([3, 4, 5], [17, 11, 6])
