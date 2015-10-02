@@ -35,5 +35,9 @@ def theoreme_chinois(xis, pis):
 		total = total + ui*Ni*xi
 	return total % N
 
-if __name__ == '__main__':
-	print theoreme_chinois([3, 4, 5], [17, 11, 6])
+def elements_inversibles(n):
+	res = []
+	for ni in xrange(n):
+		if inverse(ni, n):
+			res.append(ni)
+	return res
