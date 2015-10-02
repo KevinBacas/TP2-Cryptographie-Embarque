@@ -103,6 +103,11 @@ def signature_RSA_CRT_faute(m, K):
 		res = theoreme_chinois([sp, sq], [p, q])
 	return res
 
-if __name__ == "__main__":
-	K = generer_cle_RSA(1024)
-	print signature_RSA_CRT(42, K)
+def RSA_CRT_Bellcore(m, K):
+	(_, _, N, e, d) = K
+	s = signature_RSA_CRT(m, K)
+	s_err = signature_RSA_CRT_faute(m, K)
+	(p, q) = (0, 0)
+	p = pgcd(s - s_err, N)
+	q = N / p
+	return (p, q)

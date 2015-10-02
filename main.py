@@ -1,4 +1,4 @@
-from utils import pgcd, bezout, inverse, theoreme_chinois, elements_inversibles, rabin_miller
+from utils import pgcd, bezout, inverse, theoreme_chinois, elements_inversibles, rabin_miller, generer_cle_RSA, signature_RSA_CRT_faute, RSA_CRT_Bellcore
 
 if __name__ == '__main__':
 	print "Hello world!"
@@ -19,3 +19,9 @@ if __name__ == '__main__':
 
 	print "rabin_miller(13, 10) should return True :", rabin_miller(13, 10)
 	print "rabin_miller(60, 10) should return False :", rabin_miller(60, 10)
+
+	K = generer_cle_RSA(1024)
+	s = signature_RSA_CRT_faute(42, K)
+	(p, q, N, e, d) = K
+	(p_, q_) = RSA_CRT_Bellcore(42, K)
+	print (p == p_) and (q == q_)
