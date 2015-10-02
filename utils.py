@@ -92,6 +92,17 @@ def signature_RSA_CRT(m,K):
 		res = theoreme_chinois([sp, sq], [p, q])
 	return res
 
+def signature_RSA_CRT_faute(m, K):
+	(p, q, N, e, d) = K
+	res = False
+	if N > m:
+		dp = d % (p-1)
+		dq = d % (q-1)
+		sp = pow(m, dp, p)
+		sq = pow(m, dq, q) + 1
+		res = theoreme_chinois([sp, sq], [p, q])
+	return res
+
 if __name__ == "__main__":
 	K = generer_cle_RSA(1024)
 	print signature_RSA_CRT(42, K)
