@@ -41,3 +41,26 @@ def elements_inversibles(n):
 		if inverse(ni, n):
 			res.append(ni)
 	return res
+
+def rabin_miller(p, t):
+	res = False
+	if 0 < t and t < p-1:
+		q = p-1
+		k = 0
+		while (q & 0b1) != 1:
+			q = q/2
+			k = k+1
+		b = pow(t, q, p)
+		if b == 1 or b == (p-1):
+			res = True
+		else:
+			while k > 0 and not res:
+				b = pow(b, 2, p)
+				if b == (p-1):
+					res = True
+				k = k-1
+	return res
+	
+if __name__ == "__main__":
+	print rabin_miller(13, 10)
+	print rabin_miller(60, 10)
