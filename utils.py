@@ -16,3 +16,11 @@ def bezout(a, b):
 		(v0, v1) = (v1, v0 - q*v1)
 	return (a, u0, v0) if a > 0 else (-a, -u0, -v0)
  
+def inverse(a, n):
+	res = 0
+	if n > 1 and pgcd(a, n) == 1:
+		(a, u0, v0) = bezout(a, n)
+		res = u0 % n
+	# TODO: Afficher un message d'erreur si res == 0	 
+	return res
+ 
