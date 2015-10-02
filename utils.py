@@ -80,6 +80,18 @@ def generer_cle_RSA(n):
 	e = generer_nombre_premier(n) % fi_N
 	d = inverse(e, fi_N)
 	return (p, q, N, e, d)
+	
+def signature_RSA_CRT(m,K):
+	(p, q, N, e, d) = K
+	res = False
+	if N > m:
+		dp = d % (p-1)
+		dq = d % (q-1)
+		sp = pow(m, dp, p)
+		sq = pow(m, dq, q)
+		res = theoreme_chinois([sp, sq], [p, q])
+	return res
 
 if __name__ == "__main__":
-	print generer_cle_RSA(1024)
+	K = generer_cle_RSA(1024)
+	print signature_RSA_CRT(42, K)
