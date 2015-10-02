@@ -72,5 +72,14 @@ def generer_nombre_premier(n):
 			a = a + 2
 		return a
 
+def generer_cle_RSA(n):
+	p = generer_nombre_premier(n)
+	q = generer_nombre_premier(n)
+	N = p*q
+	fi_N = (p-1)*(q-1)
+	e = generer_nombre_premier(n) % fi_N
+	d = inverse(e, fi_N)
+	return (p, q, N, e, d)
+
 if __name__ == "__main__":
-	print generer_nombre_premier(1024)
+	print generer_cle_RSA(1024)
